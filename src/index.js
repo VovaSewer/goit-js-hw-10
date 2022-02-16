@@ -10,20 +10,19 @@ const DEBOUNCE_DELAY = 300;
 const refs = {
     input: document.querySelector('#search-box'),
     countryList: document.querySelector('.country-list'),
-    countryInfo: document.querySelector('.country-info'),
+    countryInfo: document.querySelector('.country-info')
 }
 
 refs.input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
-function onInput(e) {
-    const value = e.target.value.trim();
+function onInput(event) {
+    const value = event.target.value.trim();
     clearInput();
 
     fetchCountries(value)
         .then(country => {
             const countryLength = country.length;
             
-            inputCheckValue(value);
             clearInput();
 
             if (countryLength > 10) {
@@ -40,17 +39,14 @@ function onInput(e) {
             else if (!countryLength) {
                 Notiflix.Notify.failure("Oops, there is no country with that name");
             }
-        })
+        }) .catch((error) => {
+            Notiflix.Notify.failure(`Oops, there is no country with that name ${error}`);
+        });
 }
+
+
 
 function clearInput() {
     refs.countryInfo.innerHTML = '';
     refs.countryList.innerHTML = '';
 }
-
-function inputCheckValue(value) {
-    if (value === '') {
-        Notiflix.Notify.info('Please choose a country ');
-    }
-}
-

@@ -16,5 +16,32 @@ body {
   font: inherit;
   padding: 8px;
   max-width: 320px;
-  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 40px;
+}
+
+.country-list{
+  list-style: none;
+  margin-top: 20;
+}
+
+.country-image {
+  padding-right: 10px;
+}
+
+.card-flag{
+  width: 60px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.card-country{
+  display: flex;
+  align-items: center;
+}
+
+.country-item {
+  font-weight: bold;
 }
